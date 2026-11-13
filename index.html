@@ -1,269 +1,413 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md Fahim Razi Prantik · UAV ISAC and Reinforcement Learning</title>
-    <meta name="description" content="Md Fahim Razi Prantik, M.Eng. researcher at Beihang University (State Key Laboratory of CNS/ATM). UAV-assisted integrated sensing and communication, deep and multi-agent reinforcement learning, air traffic management.">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Md Fahim Razi Prantik">
-    <meta property="og:description" content="UAV-assisted ISAC, deep and multi-agent reinforcement learning, air traffic management. Beihang University.">
-    <meta name="theme-color" content="#b509ac">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f5fbf'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' text-anchor='middle' fill='white'%3EFP%3C/text%3E%3C/svg%3E">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400&family=Roboto+Slab:wght@500;700&display=swap">
-    <link rel="stylesheet" href="style.css">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Md Fahim Razi Prantik",
-      "jobTitle": "Junior Researcher",
-      "affiliation": { "@type": "Organization", "name": "State Key Laboratory of CNS/ATM, Beihang University" },
-      "sameAs": [
-        "https://github.com/fahimraziprantik",
-        "https://www.linkedin.com/in/fahimraziprantik",
-        "https://orcid.org/0009-0005-2436-4145"
-      ]
-    }
-    </script>
+<meta charset="UTF-8" />
+<script>
+  // Default to dark; only switch to light if the visitor explicitly chose it before.
+  // Runs in <head> so light-mode visitors don't see a dark flash.
+  if (localStorage.getItem('theme') === 'light') document.documentElement.classList.remove('dark');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Md Fahim Razi Prantik</title>
+<meta name="description" content="Md Fahim Razi Prantik, Junior Researcher and M.Eng. candidate at the State Key Laboratory of CNS/ATM, Beihang University. Research on UAV-enabled ISAC, trajectory optimization, deep reinforcement learning and air traffic management." />
+<link rel="canonical" href="https://fahimraziprantik.github.io/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Md Fahim Razi Prantik" />
+<meta property="og:description" content="Junior Researcher at the State Key Laboratory of CNS/ATM, Beihang University. UAV ISAC, trajectory optimization and aviation communication." />
+<meta property="og:url" content="https://fahimraziprantik.github.io/" />
+<meta property="og:image" content="https://fahimraziprantik.github.io/images/profile.jpg" />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f5fbf'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' text-anchor='middle' fill='white'%3EFP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Roboto', 'system-ui', 'sans-serif'],
+          slab: ['"Roboto Slab"', 'Georgia', 'serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  /* ============================================================
+     ACCENT COLOR — change ONE line to re-theme the whole site.
+     Try the alternatives in the comments below.
+     ============================================================ */
+  :root {
+    --accent: #b509ac;      /* al-folio magenta (default) */
+    --accent-hover: #7a0673;
+    /* --accent: #1f3a8a; --accent-hover: #142454;  // deep blue (Karpathy/MIT) */
+    /* --accent: #0d6e6e; --accent-hover: #074a4a;  // academic teal (Lilian Weng) */
+    /* --accent: #a4022d; --accent-hover: #6e0020;  // PolyU red */
+    /* --accent: #c1502e; --accent-hover: #8c361c;  // burnt orange (Princeton-ish) */
+    /* --accent: #4f46e5; --accent-hover: #3730a3;  // indigo (modern SaaS) */
+    /* --accent: #111827; --accent-hover: #374151;  // mono (Jon Barron minimal) */
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Roboto', system-ui, sans-serif; }
+  h1, h2, h3, .slab { font-family: 'Roboto Slab', Georgia, serif; }
+
+  a.link { color: var(--accent); transition: color .15s ease; }
+  a.link:hover { color: var(--accent-hover); text-decoration: underline; }
+  .hover-accent:hover { color: var(--accent); }
+  .hover-accent-border:hover { border-color: var(--accent); color: var(--accent); }
+
+  .nav-links { scrollbar-width: none; }
+  .nav-links::-webkit-scrollbar { display: none; }
+
+  .pub-card { transition: transform .15s ease, box-shadow .15s ease; }
+  .pub-card:hover { transform: translateY(-2px); }
+
+  .badge { display: inline-block; padding: 1px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: .02em; }
+
+  /* video teaser */
+  .teaser-video { width: 100%; height: 100%; object-fit: cover; }
+
+  /* details/summary */
+  details summary { cursor: pointer; list-style: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details[open] summary .chev { transform: rotate(90deg); }
+  .chev { display: inline-block; transition: transform .15s ease; }
+
+  /* bibtex toggle */
+  .bib-toggle { cursor: pointer; font: inherit; }
+  .bib-toggle.is-open { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .bib-block pre {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 12px;
+    line-height: 1.55;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .bib-copy { font: inherit; cursor: pointer; }
+</style>
 </head>
-<body>
-    <nav class="navbar" aria-label="Main">
-        <div class="nav-content">
-            <a href="#top" class="nav-home">Fahim Razi Prantik</a>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#news">News</a>
-                <a href="#publications">Publications</a>
-                <a href="#education">Education</a>
-                <a href="#awards">Awards</a>
-                <a href="#skills">Skills</a>
-            </div>
-            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark theme" title="Toggle theme">&#9680;</button>
-        </div>
-    </nav>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors">
 
-    <main class="container" id="top">
-        <section class="hero" id="about">
-            <div>
-                <h1>Md Fahim Razi Prantik</h1>
-                <p class="role">Junior Researcher, <a href="https://ev.buaa.edu.cn/" target="_blank" rel="noopener">Beihang University</a></p>
-                <p>I am currently a Junior Researcher and M.Eng. candidate at the State Key Laboratory of CNS/ATM, <a href="https://ev.buaa.edu.cn/" target="_blank" rel="noopener">Beihang University</a>, working with Prof. Peng Zhao.</p>
-                <p>My research focuses on <strong>autonomous flight, intelligent transportation systems and aviation communication</strong> in dynamic environments, with a particular emphasis on applications in urban scenarios.</p>
-                <p>I am always open to research collaborations, academic exchanges and interesting ideas. Feel free to reach out via <a href="mailto:fahimraziprantik@buaa.edu.cn">fahimraziprantik@buaa.edu.cn</a>.</p>
-                <div class="links">
-                    <a href="mailto:fahimraziprantik@buaa.edu.cn" aria-label="Email" title="Email"><span class="ico ico-envelope" aria-hidden="true"></span></a>
-                    <a href="https://scholar.google.com/citations?user=KSITJJcAAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar"><span class="ico ico-googlescholar" aria-hidden="true"></span></a>
-                    <a href="https://github.com/fahimraziprantik" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><span class="ico ico-github" aria-hidden="true"></span></a>
-                    <a href="https://www.linkedin.com/in/fahimraziprantik" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><span class="ico ico-linkedin" aria-hidden="true"></span></a>
-                    <a href="https://orcid.org/0009-0005-2436-4145" target="_blank" rel="noopener" aria-label="ORCID" title="ORCID"><span class="ico ico-orcid" aria-hidden="true"></span></a>
-                </div>
-            </div>
-            <img class="avatar" src="photo.jpg" width="190" height="190" alt="Portrait of Md Fahim Razi Prantik">
-        </section>
+<!-- Top nav -->
+<nav class="sticky top-0 z-30 backdrop-blur bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800">
+  <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
+    <a href="#" class="slab font-bold text-lg tracking-tight whitespace-nowrap hidden sm:block">md fahim razi prantik</a>
+    <div class="flex items-center gap-3 min-w-0 flex-1 sm:flex-none justify-end">
+      <div class="nav-links flex items-center gap-4 sm:gap-5 text-sm whitespace-nowrap min-w-0 overflow-x-auto">
+        <a href="#about" class="hover-accent">about</a>
+        <a href="#news" class="hover-accent">news</a>
+        <a href="#publications" class="hover-accent">publications</a>
+        <a href="#cv" class="hover-accent">education</a>
+        <a href="#projects" class="hover-accent">projects</a>
+        <a href="#awards" class="hover-accent">awards</a>
+        <a href="#skills" class="hover-accent">skills</a>
+      </div>
+      <button id="theme-toggle" aria-label="toggle theme" class="shrink-0 text-lg">
+        <i class="bi bi-moon-stars"></i>
+      </button>
+    </div>
+  </div>
+</nav>
 
-        <section id="news">
-            <h2>News</h2>
-            <ul class="news-list">
-                <li><span class="news-date">May 2026</span><span>Won the <strong>Best Design Award</strong> (2nd prize) at the 3rd Capital International Students Robotics Competition with the Beihang team.</span></li>
-                <li><span class="news-date">2026</span><span>Paper on density-adaptive UAV ISAC with a DRL framework published in <strong>IEEE Wireless Communications Letters</strong>.</span></li>
-                <li><span class="news-date">Apr 2026</span><span>Presented an entrepreneurial idea on stage at the <strong>KT&amp;G Alliance Students' Venture Forum</strong> in Seoul, representing Bangladesh.</span></li>
-                <li><span class="news-date">Apr 2026</span><span>Competed in the <strong>25th CURC ROBOTAC</strong> competition with a humanoid fighting robot, as part of Beihang Team 1.</span></li>
-                <li><span class="news-date">2026</span><span>Paper on energy-efficient trajectory planning and spectrum management for AAV-based ISAC published at the <strong>AIAA SCITECH 2026 Forum</strong>.</span></li>
-                <li><span class="news-date">2026</span><span>Paper on hyperdimensional computing and ridge regression for airfoil aerodynamic prediction published in <strong>Aerospace Science and Technology</strong>.</span></li>
-            </ul>
-            <details class="more">
-                <summary>show <strong>3</strong> more news</summary>
-                <ul class="news-list">
-                    <li><span class="news-date">2025</span><span>Paper on moving target defense for UAVs under FDI attacks published at <strong>IEEE ICUS 2025</strong>.</span></li>
-                    <li><span class="news-date">2025</span><span>Received the <strong>Excellent Study Award, First Prize</strong> at Beihang University.</span></li>
-                    <li><span class="news-date">Sep 2024</span><span>Joined the <strong>State Key Laboratory of CNS/ATM</strong> at Beihang University as a Junior Researcher and started the M.Eng. with a Chinese Government Scholarship.</span></li>
-                </ul>
-            </details>
-        </section>
 
-        <section id="publications">
-            <div class="sec-head">
-                <h2>Selected Publications</h2>
-                <a href="https://scholar.google.com/citations?user=KSITJJcAAAAJ&amp;hl=en" target="_blank" rel="noopener">full list on Scholar &rarr;</a>
-            </div>
+<main class="max-w-5xl mx-auto px-6 py-12">
 
-            <h3 class="group">UAV ISAC and reinforcement learning</h3>
+  <!-- About / Hero -->
+  <section id="about" class="grid md:grid-cols-3 gap-10 items-start mb-16">
+    <div class="md:col-span-2 order-2 md:order-1">
+      <h1 class="text-4xl font-bold tracking-tight mb-2">Md Fahim Razi Prantik</h1>
+      <p class="text-gray-500 dark:text-gray-400 mb-5">Junior Researcher &amp; M.Eng. Candidate, State Key Laboratory of CNS/ATM, <a class="link" href="https://ev.buaa.edu.cn/" target="_blank">Beihang University</a></p>
+      <p class="text-[15px] leading-relaxed mb-4">
+        I am currently a Junior Researcher and M.Eng. candidate at the State Key Laboratory of CNS/ATM, <a class="link" href="https://ev.buaa.edu.cn/" target="_blank">Beihang University</a>, working with Prof. Peng Zhao.
+      </p>
+      <p class="text-[15px] leading-relaxed mb-4">
+        My research focuses on <b>autonomous flight, intelligent transportation systems and aviation communication</b> in dynamic environments, with a particular emphasis on applications in urban scenarios.
+      </p>
+      <p class="text-[15px] leading-relaxed mb-6">
+        I am always open to research collaborations, academic exchanges and interesting ideas. Feel free to reach out via <a class="link" href="mailto:fahimraziprantik@buaa.edu.cn">fahimraziprantik@buaa.edu.cn</a>
+      </p>
+      <div class="flex items-center gap-4 text-xl text-gray-600 dark:text-gray-300">
+        <a href="mailto:fahimraziprantik@buaa.edu.cn" title="Email" class="hover-accent"><i class="bi bi-envelope-fill"></i></a>
+        <a href="https://scholar.google.com/citations?user=KSITJJcAAAAJ&amp;hl=en" target="_blank" title="Google Scholar" class="hover-accent"><i class="bi bi-mortarboard-fill"></i></a>
+        <a href="https://orcid.org/0009-0005-2436-4145" target="_blank" title="ORCID" class="hover-accent"><i class="bi bi-person-badge-fill"></i></a>
+        <a href="https://github.com/fahimraziprantik" target="_blank" title="GitHub" class="hover-accent"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/fahimraziprantik/" target="_blank" title="LinkedIn" class="hover-accent"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+    <div class="order-1 md:order-2 flex md:justify-end">
+      <img src="./images/profile.jpg" alt="Md Fahim Razi Prantik" class="w-44 h-44 md:w-52 md:h-52 object-cover rounded-full shadow-lg ring-4 ring-white dark:ring-gray-800" style="object-position:50% 35%" />
+    </div>
+  </section>
 
-            <article class="pub">
-                <div class="pub-tags"><span class="tag pending">Under review</span></div>
-                <p class="pub-title">MARL-Based UAV Trajectory, Energy, and Beamforming Optimization for ISAC System at Urban Intersections</p>
-                <p class="pub-authors"><span class="me">Md Fahim Razi Prantik</span>, et al.</p>
-                <p class="pub-venue">Under review.</p>
-            <div class="pub-links"><button type="button" class="bib-toggle" data-target="bib1">BibTeX</button></div>
-                <div class="bib-block" id="bib1" hidden><button type="button" class="copy">copy</button><pre>@unpublished{prantik2026marl,
-  title  = {{MARL}-Based {UAV} Trajectory, Energy, and Beamforming Optimization for {ISAC} System at Urban Intersections},
-  author = {Prantik, Md Fahim Razi and others},
-  note   = {Submitted},
-  year   = {2026}
-}</pre></div>
-            </article>
+  <!-- News -->
+  <section id="news" class="mb-16">
+    <h2 class="slab text-2xl font-bold mb-5 border-b border-gray-200 dark:border-gray-800 pb-2">news</h2>
+    <ul class="text-[15px] leading-relaxed space-y-2.5">
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-24 shrink-0 font-mono text-sm">May 2026</span>
+          <span>Won the <b>Second Prize</b> with Beihang Team 1 and the <b>Best Design Award</b> at the <b>3rd Capital International Students Robotics Competition</b>.</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-24 shrink-0 font-mono text-sm">May 2026</span>
+          <span>Paper on density-adaptive UAV ISAC with a DRL framework published in <b>IEEE Wireless Communications Letters</b>.</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-24 shrink-0 font-mono text-sm">Apr 2026</span>
+          <span>Presented an entrepreneurial idea on stage at the <b>KT&amp;G Alliance Students’ Venture Forum</b> in <b>Seoul, South Korea</b>, representing Bangladesh.</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-24 shrink-0 font-mono text-sm">Jan 2026</span>
+          <span>Paper on energy-efficient trajectory planning and spectrum management for AAV-based ISAC published at the <b>AIAA SCITECH 2026 Forum</b>.</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-24 shrink-0 font-mono text-sm">Jan 2026</span>
+          <span>Paper on hyperdimensional computing and ridge regression for airfoil aerodynamic prediction published in <b>Aerospace Science and Technology</b>.</span>
+        </li>
+      </ul>
+      <details class="mt-2.5">
+        <summary class="text-sm link inline-flex items-center gap-1">
+          <span class="chev">▸</span> show <b>2</b> more news
+        </summary>
+        <ul class="mt-3 text-[15px] leading-relaxed space-y-2.5">
+          <li class="flex gap-4">
+            <span class="text-gray-400 dark:text-gray-500 w-24 shrink-0 font-mono text-sm">Sep 2025</span>
+            <span>Paper on moving target defense and control compensation for UAVs under FDI attacks published at <b>IEEE ICUS 2025</b> (co-author).</span>
+          </li>
+          <li class="flex gap-4">
+            <span class="text-gray-400 dark:text-gray-500 w-24 shrink-0 font-mono text-sm">Sep 2024</span>
+            <span>Started M.Eng. at <b>Beihang University</b> with the <b>Chinese Government Scholarship (CSC)</b> and joined the State Key Laboratory of CNS/ATM.</span>
+          </li>
+        </ul>
+      </details>
+  </section>
 
-            <article class="pub">
-                <div class="pub-tags"><span class="tag">IEEE WCL 2026</span></div>
-                <p class="pub-title">Density-Adaptive UAV ISAC: A DRL Framework for Joint Beam Control and Trajectory Design</p>
-                <p class="pub-authors"><span class="me">Md Fahim Razi Prantik</span>, Z. Zhang, L. Zhao, K. Cai, P. Zhao</p>
-                <p class="pub-venue">IEEE Wireless Communications Letters, 2026.</p>
-                <div class="pub-links"><a href="https://doi.org/10.1109/LWC.2026.3689708" target="_blank" rel="noopener">DOI</a><button type="button" class="bib-toggle" data-target="bib2">BibTeX</button></div>
-                <div class="bib-block" id="bib2" hidden><button type="button" class="copy">copy</button><pre>@article{prantik2026density,
-  title   = {Density-Adaptive {UAV} {ISAC}: A {DRL} Framework for Joint Beam Control and Trajectory Design},
-  author  = {Prantik, Md Fahim Razi and Zhang, Z. and Zhao, L. and Cai, K. and Zhao, P.},
-  journal = {IEEE Wireless Communications Letters},
-  year    = {2026},
-  doi     = {10.1109/LWC.2026.3689708}
-}</pre></div>
-            </article>
+  <!-- Selected Publications -->
+  <section id="publications" class="mb-16">
+    <div class="flex items-end justify-between border-b border-gray-200 dark:border-gray-800 pb-2 mb-5">
+      <h2 class="slab text-2xl font-bold">publications</h2>
+      <a href="https://scholar.google.com/citations?user=KSITJJcAAAAJ&amp;hl=en" target="_blank" class="text-sm link">full list on Scholar →</a>
+    </div>
 
-            <article class="pub">
-                <div class="pub-tags"><span class="tag">AIAA SCITECH 2026</span></div>
-                <p class="pub-title">Energy-Efficient Trajectory Planning and Spectrum Management for AAVs-Based ISAC in Urban Aerospace Applications</p>
-                <p class="pub-authors"><span class="me">Md Fahim Razi Prantik</span>, Z. Zhang, L. Zhao, K. Cai, Z. Jiao, P. Zhao</p>
-                <p class="pub-venue">AIAA SCITECH 2026 Forum.</p>
-                <div class="pub-links"><a href="https://doi.org/10.2514/6.2026-0662" target="_blank" rel="noopener">DOI</a><button type="button" class="bib-toggle" data-target="bib3">BibTeX</button></div>
-                <div class="bib-block" id="bib3" hidden><button type="button" class="copy">copy</button><pre>@inproceedings{prantik2026energy,
-  title     = {Energy-Efficient Trajectory Planning and Spectrum Management for {AAVs}-Based {ISAC} in Urban Aerospace Applications},
-  author    = {Prantik, Md Fahim Razi and Zhang, Z. and Zhao, L. and Cai, K. and Jiao, Z. and Zhao, P.},
-  booktitle = {AIAA SCITECH 2026 Forum},
-  year      = {2026},
-  doi       = {10.2514/6.2026-0662}
-}</pre></div>
-            </article>
+    <h3 class="slab text-base text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">Journal Articles</h3>
+    <div class="pub-card mb-5 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50">
+        <div class="flex items-center gap-2 mb-1"><span class="badge bg-emerald-100 text-emerald-800">IEEE WCL 2026</span> </div>
+        <p class="font-semibold text-[16px] leading-snug mb-1"><a href="https://doi.org/10.1109/LWC.2026.3689708" target="_blank" class="hover:underline" style="color:inherit">Density-Adaptive UAV ISAC: A DRL Framework for Joint Beam Control and Trajectory Design</a></p>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2"><u>Md Fahim Razi Prantik</u>, Z. Zhang, L. Zhao, K. Cai, P. Zhao</p>
+        <p class="text-[13px] text-gray-500 dark:text-gray-400 italic mb-3">IEEE Wireless Communications Letters, May 2026.</p>
+        <div class="flex flex-wrap gap-2 text-xs"><a href="https://doi.org/10.1109/LWC.2026.3689708" target="_blank" class="px-2.5 py-1 rounded border border-gray-300 dark:border-gray-600 hover-accent-border">DOI</a></div>
+    </div>
+    <div class="pub-card mb-5 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50">
+        <div class="flex items-center gap-2 mb-1"><span class="badge bg-emerald-100 text-emerald-800">AST 2026</span> <span class="badge bg-gray-200 text-gray-700">Equal contribution</span> </div>
+        <p class="font-semibold text-[16px] leading-snug mb-1"><a href="https://doi.org/10.1016/j.ast.2025.111591" target="_blank" class="hover:underline" style="color:inherit">Hyperdimensional Computing and Ridge Regression for Airfoil Aerodynamic Prediction: A Physics-Informed Machine Learning Framework</a></p>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">R. M. Atiqur<sup>*</sup>, <u>Md Fahim Razi Prantik</u><sup>*</sup>, S. T. Islam, A. Rahman, S. H. Masum, M. A. Hossain</p>
+        <p class="text-[13px] text-gray-500 dark:text-gray-400 italic mb-3">Aerospace Science and Technology, Jan 2026. (*equal contribution)</p>
+        <div class="flex flex-wrap gap-2 text-xs"><a href="https://doi.org/10.1016/j.ast.2025.111591" target="_blank" class="px-2.5 py-1 rounded border border-gray-300 dark:border-gray-600 hover-accent-border">DOI</a></div>
+    </div>
 
-            <h3 class="group">UAV security and aerospace machine learning</h3>
+    <h3 class="slab text-base text-gray-500 dark:text-gray-400 uppercase tracking-wider mt-10 mb-4">Conference Proceedings</h3>
+    <div class="pub-card mb-5 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50">
+        <div class="flex items-center gap-2 mb-1"><span class="badge bg-indigo-100 text-indigo-800">AIAA SCITECH 2026</span> </div>
+        <p class="font-semibold text-[16px] leading-snug mb-1"><a href="https://doi.org/10.2514/6.2026-0662" target="_blank" class="hover:underline" style="color:inherit">Energy-Efficient Trajectory Planning and Spectrum Management for AAVs-Based ISAC in Urban Aerospace Applications</a></p>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2"><u>Md Fahim Razi Prantik</u>, Z. Zhang, L. Zhao, K. Cai, Z. Jiao, P. Zhao</p>
+        <p class="text-[13px] text-gray-500 dark:text-gray-400 italic mb-3">AIAA SCITECH 2026 Forum, Jan 2026.</p>
+        <div class="flex flex-wrap gap-2 text-xs"><a href="https://doi.org/10.2514/6.2026-0662" target="_blank" class="px-2.5 py-1 rounded border border-gray-300 dark:border-gray-600 hover-accent-border">DOI</a></div>
+    </div>
+    <div class="pub-card mb-5 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50">
+        <div class="flex items-center gap-2 mb-1"><span class="badge bg-indigo-100 text-indigo-800">IEEE ICUS 2025</span> </div>
+        <p class="font-semibold text-[16px] leading-snug mb-1"><a href="https://doi.org/10.1109/ICUS66297.2025.11295369" target="_blank" class="hover:underline" style="color:inherit">Design of Moving Target Defense and Control Compensation for UAVs under FDI Attacks</a></p>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">R. Abdullah, Z. Xi, <u>Md Fahim Razi Prantik</u></p>
+        <p class="text-[13px] text-gray-500 dark:text-gray-400 italic mb-3">IEEE ICUS, Sep 2025.</p>
+        <div class="flex flex-wrap gap-2 text-xs"><a href="https://doi.org/10.1109/ICUS66297.2025.11295369" target="_blank" class="px-2.5 py-1 rounded border border-gray-300 dark:border-gray-600 hover-accent-border">DOI</a></div>
+    </div>
 
-            <article class="pub">
-                <div class="pub-tags"><span class="tag">IEEE ICUS 2025</span></div>
-                <p class="pub-title">Design of Moving Target Defense and Control Compensation for UAVs under FDI Attacks</p>
-                <p class="pub-authors">R. Abdullah, Z. Xi, <span class="me">Md Fahim Razi Prantik</span></p>
-                <p class="pub-venue">IEEE International Conference on Unmanned Systems, 2025.</p>
-                <div class="pub-links"><a href="https://doi.org/10.1109/ICUS66297.2025.11295369" target="_blank" rel="noopener">DOI</a><button type="button" class="bib-toggle" data-target="bib4">BibTeX</button></div>
-                <div class="bib-block" id="bib4" hidden><button type="button" class="copy">copy</button><pre>@inproceedings{abdullah2025design,
-  title     = {Design of Moving Target Defense and Control Compensation for {UAVs} under {FDI} Attacks},
-  author    = {Abdullah, R. and Xi, Z. and Prantik, Md Fahim Razi},
-  booktitle = {IEEE International Conference on Unmanned Systems},
-  year      = {2025},
-  doi       = {10.1109/ICUS66297.2025.11295369}
-}</pre></div>
-            </article>
+    <h3 class="slab text-base text-gray-500 dark:text-gray-400 uppercase tracking-wider mt-10 mb-4">Submitted</h3>
+    <div class="pub-card mb-5 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50">
+        <div class="flex items-center gap-2 mb-1"><span class="badge bg-amber-100 text-amber-800">Under review</span> </div>
+        <p class="font-semibold text-[16px] leading-snug mb-1">MARL-Based UAV Trajectory, Energy, and Beamforming Optimization for ISAC System at Urban Intersections</p>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2"><u>Md Fahim Razi Prantik</u>, et al.</p>
+        <p class="text-[13px] text-gray-500 dark:text-gray-400 italic mb-3">Submitted.</p>
+    </div>
+  </section>
 
-            <article class="pub">
-                <div class="pub-tags"><span class="tag">AST 2026</span></div>
-                <p class="pub-title">Hyperdimensional Computing and Ridge Regression for Airfoil Aerodynamic Prediction: A Physics-Informed Machine Learning Framework</p>
-                <p class="pub-authors">R. M. Atiqur<sup>*</sup>, <span class="me">Md Fahim Razi Prantik</span><sup>*</sup>, S. T. Islam, A. Rahman, S. H. Masum, M. A. Hossain <span class="note">(* equal contribution)</span></p>
-                <p class="pub-venue">Aerospace Science and Technology, 2026.</p>
-                <div class="pub-links"><a href="https://doi.org/10.1016/j.ast.2025.111591" target="_blank" rel="noopener">DOI</a><button type="button" class="bib-toggle" data-target="bib5">BibTeX</button></div>
-                <div class="bib-block" id="bib5" hidden><button type="button" class="copy">copy</button><pre>@article{atiqur2026hyperdimensional,
-  title   = {Hyperdimensional Computing and Ridge Regression for Airfoil Aerodynamic Prediction: A Physics-Informed Machine Learning Framework},
-  author  = {Atiqur, R. M. and Prantik, Md Fahim Razi and Islam, S. T. and Rahman, A. and Masum, S. H. and Hossain, M. A.},
-  journal = {Aerospace Science and Technology},
-  year    = {2026},
-  doi     = {10.1016/j.ast.2025.111591},
-  note    = {Equal contribution: Atiqur and Prantik}
-}</pre></div>
-            </article>
-        </section>
+  <!-- Education & Experience -->
+  <section id="cv" class="mb-16">
+    <h2 class="slab text-2xl font-bold mb-5 border-b border-gray-200 dark:border-gray-800 pb-2">education &amp; research experience</h2>
+    <ul class="space-y-5 text-[15px]">
+      <li class="flex gap-4">
+        <span class="text-gray-400 dark:text-gray-500 w-36 shrink-0 font-mono text-sm">2024 — present</span>
+        <span><b>Junior Researcher</b> · State Key Laboratory of CNS/ATM, Beihang University<br/>
+          <span class="text-gray-500 text-sm">Designing and optimizing UAV-assisted hierarchical ISAC systems for urban environments: trajectory optimization, interference management and multi-UAV coordination. Contributor to Grant No. 2024A03 (ISAC in airport surface based on aeronautical broadband communication) and NSFC Grant No. 52302424 (multi-source, multi-domain collaborative reasoning for autonomous air traffic situational awareness).</span></span>
+      </li>
+      <li class="flex gap-4">
+        <span class="text-gray-400 dark:text-gray-500 w-36 shrink-0 font-mono text-sm">Sep 2024 — May 2027 (expected)</span>
+        <span><b>M.Eng., Traffic Information Engineering and Control</b> · Beihang University, Beijing, China<br/>
+          <span class="text-gray-500 text-sm">Advisor: Prof. Peng Zhao · GPA 3.62 / 4.00<br/>
+          Thesis: “Joint Optimization of Trajectory, Beamforming, and Power Allocation for UAV-Enabled Integrated Sensing and Communication” (DRL-based joint optimization for ISAC in urban aerospace environments).</span></span>
+      </li>
+      <li class="flex gap-4">
+        <span class="text-gray-400 dark:text-gray-500 w-36 shrink-0 font-mono text-sm">2020 — 2024</span>
+        <span><b>B.Eng., Communication Engineering</b> · Civil Aviation University of China, Tianjin, China<br/>
+          <span class="text-gray-500 text-sm">GPA 3.96 / 4.00 (average 93.49%)</span></span>
+      </li>
+    </ul>
+  </section>
 
-        <section id="education">
-            <h2>Education &amp; Experience</h2>
-            <ul class="tl">
-                <li>
-                    <span class="tl-date">2024 &ndash; present</span>
-                    <div><p class="tl-title"><strong>Junior Researcher</strong> &middot; State Key Laboratory of CNS/ATM, Beihang University</p>
-                    <p class="tl-sub">Participant in NSFC Grant No. 52302424 and Grant No. 2024A03. UAV-assisted ISAC, deep and multi-agent reinforcement learning, air traffic management.</p></div>
-                </li>
-                <li>
-                    <span class="tl-date">2024 &ndash; 2027</span>
-                    <div><p class="tl-title"><strong>M.Eng., Traffic Information Engineering and Control</strong> &middot; Beihang University</p>
-                    <p class="tl-sub">Advisor: Prof. Peng Zhao. GPA 3.62 / 4.00. Defence expected May 2027. Chinese Government Scholarship (CSC).</p>
-                    <p class="tl-sub">Thesis: joint optimization of trajectory, beamforming and power allocation for UAV-enabled ISAC.</p></div>
-                </li>
-                <li>
-                    <span class="tl-date">Apr &ndash; May 2026</span>
-                    <div><p class="tl-title"><strong>Product Testing Engineer Intern</strong> &middot; Beijing Jiansheng Technology Co., Ltd.</p>
-                    <p class="tl-sub">Tested AI products, evaluated model responses and gave feedback to improve model quality.</p></div>
-                </li>
-                <li>
-                    <span class="tl-date">Jun &ndash; Jul 2025</span>
-                    <div><p class="tl-title"><strong>Overseas Engineering Research Intern</strong> &middot; Genertec International Holdings Co., Ltd.</p>
-                    <p class="tl-sub">Conducted engineering market research and prepared decision-support reports.</p></div>
-                </li>
-                <li>
-                    <span class="tl-date">2020 &ndash; 2024</span>
-                    <div><p class="tl-title"><strong>B.Eng., Communication Engineering</strong> &middot; Civil Aviation University of China</p>
-                    <p class="tl-sub">GPA 3.96 / 4.00 (average 93.49%). First Class Outstanding Enrolled Student Scholarship in 2021, 2022 and 2023.</p></div>
-                </li>
-            </ul>
-        </section>
+  <!-- Projects -->
+  <section id="projects" class="mb-16">
+    <h2 class="slab text-2xl font-bold mb-5 border-b border-gray-200 dark:border-gray-800 pb-2">academic projects</h2>
+    <ul class="text-[15px] leading-relaxed space-y-3">
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">Apr 2026</span>
+          <span><b>ROBOTAC – Humanoid Kung Fu Fighting Robot</b>, 25th CURC ROBOTAC Competition, Beihang Team 1. Implemented full-contact combat behaviors under competition constraints (2-min match, 1.5 m × 1.5 m arena, size/weight limits).</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">Jun 2023</span>
+          <span><b>Arduino-Based Ultrasonic Radar System</b>, Mechatronics and PLC Lab. Object-detection radar with Arduino Uno, ultrasonic sensor, servo motor and MATLAB visualisation.</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">May 2023</span>
+          <span><b>Quad-copter Drone</b>, Mechatronics and PLC Lab. Designed and built a quad-copter on the KK2.1.5 flight controller; programmed stabilisation and autonomous flight routines.</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">Apr 2023</span>
+          <span><b>Innovating Business and Commerce with NLP</b>, team project with Prof. Kris Singh (Tsinghua University): NLP for efficient, intelligent transportation in emerging countries.</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">Apr 2022</span>
+          <span><b>AI Applications for Transportation System</b>, team project with Prof. Kris Singh (Tsinghua University): sustainable, efficient intelligent transportation systems.</span>
+        </li>
+    </ul>
+  </section>
 
-        <section id="awards">
-            <h2>Awards and Recognition</h2>
-            <ul class="award-list">
-                <li><span class="yr">2026</span><span>Best Design Award (2nd prize), 3rd Capital International Students Robotics Competition</span></li>
-                <li><span class="yr">2026</span><span>Speaker, KT&amp;G Alliance Students' Venture Forum, Seoul (representing Bangladesh)</span></li>
-                <li><span class="yr">2025</span><span>Excellent Study Award, First Prize, Beihang University</span></li>
-                <li><span class="yr">2025</span><span>Ambassador Award, Second Prize, Beihang University</span></li>
-                <li><span class="yr">2025</span><span>3rd Place, ISRC Control Group, Line Following Challenge</span></li>
-                <li><span class="yr">2024</span><span>Chinese Government Scholarship (CSC), full funding for M.Eng. studies</span></li>
-                <li><span class="yr">2023</span><span>Innovation and Entrepreneurship for Digital Economy Award</span></li>
-            </ul>
-        </section>
+  <!-- Awards -->
+  <section id="awards" class="mb-16">
+    <h2 class="slab text-2xl font-bold mb-5 border-b border-gray-200 dark:border-gray-800 pb-2">awards, funding &amp; honors</h2>
+    <ul class="space-y-3 text-[15px]">
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">2024—27</span>
+          <span><b>Chinese Government Scholarship (CSC)</b> <span class="text-gray-500 text-sm">— full funding for M.Eng. studies (tuition, accommodation, stipend)</span></span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">Sep 2026</span>
+          <span><b>Best Student Leaders Award</b>, International Student Union, International School, Beihang University</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">May 2026</span>
+          <span><b>Second Prize</b>, 3rd Capital International Students Robotics Competition <span class="text-gray-500 text-sm">(Beihang Team 1)</span></span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">May 2026</span>
+          <span><b>Best Design Award</b>, 3rd Capital International Students Robotics Competition</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">Apr 2026</span>
+          <span>Presented at KT&amp;G Alliance Students’ Venture Forum (ASVF), <b>Seoul, South Korea</b></span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">Dec 2025</span>
+          <span><b>First Prize</b>, Beihang University Distinguished Foreign Students Scholarship of Excellent Study</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">Dec 2025</span>
+          <span><b>Third Prize</b>, Beihang University Distinguished Foreign Students Scholarship of Outstanding Behavior</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">Dec 2025</span>
+          <span><b>Ambassador Award, Second Prize</b>, Beihang University</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">Dec 2025</span>
+          <span>3rd Place, ISRC Control Group – Line Following Challenge</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">Nov 2025</span>
+          <span>Outstanding Member Award, ISRC 8 Weeks Program</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-28 shrink-0 font-mono text-sm">2021—23</span>
+          <span><b>First Class Outstanding Enrolled Student Scholarship</b>, Civil Aviation University of China <span class="text-gray-500 text-sm">(3 times)</span></span>
+        </li>
+    </ul>
+  </section>
 
-        <section id="skills">
-            <h2>Skills</h2>
-            <dl class="skills">
-                <dt>Programming</dt><dd>Python, C, MATLAB, Arduino, LaTeX</dd>
-                <dt>AI and data</dt><dd>Machine learning, deep learning, deep and multi-agent reinforcement learning</dd>
-                <dt>Aerospace and UAV</dt><dd>UAV systems, ISAC, ADS-B decoding, trajectory optimization, air traffic management</dd>
-                <dt>Languages</dt><dd>Bengali (native), English (professional), Hindi (speaking), Chinese (HSK 2)</dd>
-            </dl>
-        </section>
-    </main>
+  <!-- Skills & Leadership -->
+  <section id="skills" class="mb-16">
+    <h2 class="slab text-2xl font-bold mb-5 border-b border-gray-200 dark:border-gray-800 pb-2">skills &amp; leadership</h2>
+    <ul class="space-y-2 text-[15px] leading-relaxed">
+      <li><b>Programming:</b> Python, C, MATLAB, Arduino, LaTeX</li>
+      <li><b>AI &amp; data:</b> Machine Learning, Deep Learning</li>
+      <li><b>Aerospace &amp; UAV:</b> UAV systems, ISAC, ADS-B decoding, trajectory optimization, air traffic management</li>
+      <li><b>Languages:</b> Bengali (native), English (professional), Hindi (speaking), Chinese (HSK 2)</li>
+    </ul>
+    <h3 class="slab text-base text-gray-500 dark:text-gray-400 uppercase tracking-wider mt-8 mb-3">Leadership &amp; organizations</h3>
+    <ul class="space-y-2 text-[15px]">
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-24 shrink-0 font-mono text-sm">2024—now</span>
+          <span><b>Deputy Head</b>, Academic &amp; Innovation Department, International Student Union, Beihang University</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="text-gray-400 dark:text-gray-500 w-24 shrink-0 font-mono text-sm">2024—now</span>
+          <span><b>Senior Member</b>, Beihang International Students Robotics Team</span>
+        </li>
+    </ul>
+  </section>
 
-    <footer class="footer">
-        <span>&copy; 2026 Md Fahim Razi Prantik. All rights reserved.</span>
-        <span>Last updated: Nov 2026 &middot; Inspired by <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener">al-folio</a></span>
-    </footer>
+</main>
 
-    <script>
-        (function () {
-            var root = document.documentElement;
-            var btn = document.getElementById("themeToggle");
-            try {
-                var saved = localStorage.getItem("theme");
-                if (saved === "light" || saved === "dark") root.setAttribute("data-theme", saved);
-            } catch (e) {}
-            btn.addEventListener("click", function () {
-                var current = root.getAttribute("data-theme");
-                if (!current) {
-                    current = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-                }
-                var next = current === "dark" ? "light" : "dark";
-                root.setAttribute("data-theme", next);
-                try { localStorage.setItem("theme", next); } catch (e) {}
-            });
-        })();
+<footer class="border-t border-gray-200 dark:border-gray-800 mt-8">
+  <div class="max-w-5xl mx-auto px-6 py-6 text-sm text-gray-500 dark:text-gray-400">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-2">
+      <span>© 2026 Md Fahim Razi Prantik. All rights reserved.</span>
+      <span>Last updated: Nov 2026 · Inspired by <a href="https://github.com/alshedivat/al-folio" target="_blank" class="link">al-folio</a></span>
+    </div>
+  </div>
+</footer>
 
-        document.addEventListener("click", function (e) {
-            var tg = e.target.closest(".bib-toggle");
-            if (tg) {
-                var b = document.getElementById(tg.getAttribute("data-target"));
-                b.hidden = !b.hidden;
-                tg.classList.toggle("is-open", !b.hidden);
-                return;
-            }
-            var cp = e.target.closest(".bib-block .copy");
-            if (cp) {
-                var txt = cp.parentNode.querySelector("pre").textContent;
-                if (navigator.clipboard) navigator.clipboard.writeText(txt).then(function () { cp.textContent = "copied"; setTimeout(function () { cp.textContent = "copy"; }, 1500); });
-            }
-        });
-    </script>
+<script>
+  // Theme toggle with localStorage
+  const root = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  btn.addEventListener('click', () => {
+    root.classList.toggle('dark');
+    localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+  });
+
+  // BibTeX expand / collapse
+  document.querySelectorAll('[data-bib-toggle]').forEach(b => {
+    b.addEventListener('click', () => {
+      const target = document.getElementById(b.dataset.bibToggle);
+      const opening = target.classList.contains('hidden');
+      target.classList.toggle('hidden');
+      b.classList.toggle('is-open', opening);
+    });
+  });
+
+  // BibTeX copy-to-clipboard
+  document.querySelectorAll('[data-bib-copy]').forEach(b => {
+    b.addEventListener('click', async () => {
+      const target = document.getElementById(b.dataset.bibCopy);
+      const text = target.querySelector('code').textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        const original = b.textContent;
+        b.textContent = 'copied!';
+        setTimeout(() => { b.textContent = original; }, 1500);
+      } catch (e) {
+        const range = document.createRange();
+        range.selectNodeContents(target.querySelector('code'));
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        b.textContent = 'press ⌘C';
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
