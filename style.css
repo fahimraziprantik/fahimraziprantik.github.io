@@ -187,7 +187,6 @@ h2 {
 .ico-linkedin { --i: url("icons/linkedin.svg"); }
 .ico-orcid { --i: url("icons/orcid.svg"); }
 .ico-googlescholar { --i: url("icons/googlescholar.svg"); }
-.ico-researchgate { --i: url("icons/researchgate.svg"); }
 
 /* Research interests chips */
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
