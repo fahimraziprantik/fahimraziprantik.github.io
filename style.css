@@ -141,6 +141,7 @@ h2 {
     height: 190px;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center 22%;
     border: 1px solid var(--line);
     background: var(--accent-soft);
     color: var(--accent);
